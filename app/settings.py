@@ -5,9 +5,9 @@ from functools import lru_cache
 
 
 class ApplicationSettings(BaseSettings):
-    name: str = Field(default=...)
-    version: str = Field(default=...)
-    debug_enabled: bool = Field(default=False)
+    name: str = Field(default=..., alias="APPLICATION_NAME")
+    version: str = Field(default=..., alias="APPLICATION_VERSION")
+    debug_enabled: bool = Field(default=False, alias="APPLICATION_DEBUG_ENABLED")
 
 
 @lru_cache
