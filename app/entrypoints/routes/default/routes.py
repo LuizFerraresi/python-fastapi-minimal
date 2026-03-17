@@ -3,7 +3,7 @@ from starlette.requests import Request
 
 from .contracts import StatusResponse, HealthzResponse, WhoamiResponse
 
-defaults = APIRouter()
+defaults = APIRouter(tags=["System"])
 
 @defaults.get(path="/status", response_model=StatusResponse)
 async def status_route():
