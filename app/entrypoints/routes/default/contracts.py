@@ -1,11 +1,22 @@
 from pydantic import BaseModel
 
+from enum import Enum
 
-class StatusResponse(BaseModel):
-    status: str = "ok"
+
+class IndexResponse(BaseModel):
+    name: str
+    version: str
+
+
+class HealthzStatus(Enum):
+    OK = "ok"
+    READY = "ready"
+    NOT_READY = "not-ready"
+
 
 class HealthzResponse(BaseModel):
-    healthy: bool = True
+    status: HealthzStatus
+
 
 class WhoamiResponse(BaseModel):
     ip: str
