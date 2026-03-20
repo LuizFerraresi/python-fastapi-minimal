@@ -7,7 +7,6 @@ def application(settings: ApplicationSettings) -> FastAPI:
     _app = FastAPI(
         title=settings.name,
         version=settings.version,
-        debug=settings.debug_enabled
     )
     _app.include_router(router)
     return _app
