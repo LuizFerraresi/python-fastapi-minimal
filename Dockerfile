@@ -5,13 +5,21 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /company
 
-COPY requirements.txt .
+# Create a dedicated group and user (non-root)
+RUN groupadd appgroup && \
+    useradd -G appgroup appuser && \
+    chown -R appuser:appgroup /company
 
+COPY --chown=appuser:appgroup requirements/runtime.txt requirements.txt
+
+# Upgrade package manager and install requirements
 RUN pip install --requirement requirements.txt \
     --upgrade pip build wheel setuptools \
     --no-cache-dir
 
-COPY app/ app/
+COPY --chown=appuser:appgroup app/ app/
+
+USER appuser
 
 EXPOSE 8000
 
