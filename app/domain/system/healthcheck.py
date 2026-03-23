@@ -2,6 +2,7 @@
 from .interfaces import Repository
 from .constants import HealthStatus
 
+
 class HealthcheckService:
 
     @staticmethod
